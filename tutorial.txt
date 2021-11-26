@@ -1,0 +1,298 @@
+Gimp Astrophotography Editing Tutorial
+------------------------------------------------------------------------------------------
+
+by Dan Liddell
+
+Based upon this page:
+
+https://www.youtube.com/watch?v=fSxdHrO0zfU
+
+Linux is assumed here. If you use Windows make the necesarry keystroke mappings.
+
+If you use a smaller display, it can be hard to shrink the Gimp interface vertically at first. 
+The tool palette on the left can be extended to the right a bit. After doing that (so that the 
+tool stack is broader and shorter) you should be able to shrink the interface vertically.
+
+Initially the test image from the tutorial is dark.
+
+The creater of the video (Ruzeen Farsad) says that Gimp does not handle 5K pixel images very 
+well, so images may either need to be reduced or saved at a lower resolution.
+------------------------------------------------------------------------------------------
+123456789012345678901234567890123456789012345678901234567890123456789012
+
+1 . If needed, resize to 1920x1293 using cubic interpolation.                  
+      Use Image > Scale. Saving a copy is probably a good idea.
+
+2.  Colors > Levels. Select the right (white) Input Levels slider and move it to the left. 
+      Don't go all the way to the left. OK this setting.
+      
+This setting is not cumulative (or, sticky), so if you set levels again, you get the original 
+dialogue box settings all over again.
+  
+3. Do step 2 again using the right-most slider. Adjust so that you just begin to see the 
+     nebula to appear. Click OK.
+     
+If you don't see the nebula, do it a third time until you just begin to see it.
+     
+4. In the layers palette at the right, name the layer something like "first levels".
+
+5. In the Layers palette, right-click > Duplicate Layer.
+
+6. Click the name of the duplite layer so it highlights. Rename the duplicate layer 
+     "first adjustments".
+
+7. With first adjustments layer still selected, select the  Colors > Curves tool.  
+     Drag the curve up to make it look like a logarithmic curve that goes nearly to the 
+     top of the graph. Click OK.
+
+8. Colors > Levels. For the Input Levels slider, move the left cursor  to the right so the 
+     black end of the spectrum is moved to the right. This removes the hazy cast of the 
+     image. Click OK.
+     
+How much you remove is a matter of taste.
+
+9. Windows > Dockable Dialogs > Histogram.
+
+10. In the histogram dialogue box, change the histogram to RGB mode.
+      For the test image, the red end of the spectrum is well below (to the left of) the 
+      green and blue.
+  
+11. Colors > Levels. Select the Red channel. For the Input Levels, move the right-hand 
+      slider of the spectrum until the red curve aligns better with the blue and green curves.
+        
+12. Right-click the layer > Duplicate Layer. Rename to "second adjustments".
+
+13. Hide the first two layers by clicking the eyeballs.
+
+14. Tools > Selection Tools > By Color Select. Set the Threshold to about 50.
+
+15. Select a representative star by clicking with the cursor.
+
+16. Select > Grow. Set to 2 px.
+
+17. Ctrl+C, Ctrl+V. This creates a selection layer, but that's not editable.
+
+18. Click the Create New Layer icon in the Layers palette.
+
+19. Rename the layer "star mask".
+
+This layer insulates the stars from other adjustments that would dull them.
+
+20. Hide the star mask. Select the second adjustments layer, and move it above the 
+      star mask.
+  
+21. Ctrl+Alt+click the star mask layer. (star mask objects should sparkle)
+      This keystroke seems to be squirrely in Linux. So instead you can do this: 
+      Right click thumbnail of the star mask layer > Alpha to selection.
+
+22. With second adjustments selected, Layer > Mask > Add Layer Mask. 
+       
+      In the Add a Mask to the Layer dialogue box, choose Selection and
+      Invert layer mask. Click Add. 
+      This mask should be next to the second adjustments layer.
+      The mask should be white.
+  
+23. Shift+Ctrl+A to deselect the image. (Select > None)
+
+The mask allows a visible layer to show while protecting the stars. The holes in the mask allow 
+the stars in the star mask to show through. So now we can edit the second adjustments layer 
+without changing the stars that lie below it in the star mask layer.
+
+24. Select the thumbnail of the second adjustments layer.
+
+25. Colors > Curves. Do a shallower curve adjustment than previously. OK the dialog box.
+
+26. Colors > Levels. Move the black slider to the right to restore the contrast.
+       
+Due to dithering in the stacking process, the edges of the picture can be a bit fuzzy. 
+So, we're going to eliminate that.
+       
+27. Select the Rectangle Select tool and draw a box just inside the perimeter of 
+      the image.
+
+28. Image > Crop to Selection.
+
+29. Ctrl+Shift+A to deselect.
+
+30. Tools > Selection Tools > By Color Select.
+      Use the Threshold of 50 as a baseline. Look for a section of the nebula that has about 
+      average density and click it.
+  
+31. Select > Feather > 10 px. OK.
+
+32. Ctrl+C > Ctrl+V. In the Layers palette, select Create New Layer.
+
+33. Repeat steps 21 - 23 for the pasted layer so you can see through to the star mask.
+
+34. Rename the pasted layer to "nebula adjustments".
+
+35. Select the nebula adjustments layer and choose Colors > Curves.
+
+36. Adjust the curve to make gentle S shape. Roughly two grids in, drag the curve down a little. 
+      Roughly five grids in, drag the  curve up a little. Fiddle with this until the picture looks right.
+       
+37. Make the second adjustments layer visible.
+
+38. Colors > Levels. Start by dragging the white Input levels slider down a bit. 
+      May want to fiddle with the settings to get the right effect. Click OK.
+
+39. In the layers palette, you can adjust the opacity of any layer to get a desired effect. 
+        
+This author went with 70% for the nebula adjustments layer in the first attempt.
+
+Now we'll adjust the background color.
+
+You could try to repeat steps 30-32 on a layer (possibly a new one). 
+For the test image, this simply grabs too much of the image. 
+So instead we'll raise the black level.
+
+40. Make just the second adjustments layer visible.
+
+41. Layer > New from Visible.
+
+42. Make both the new layer and the nebula adjustments layer visible.
+
+43. Select the new layer and rename it "background adjustments".
+
+44. Colors > Levels. Move the black slider to the right. You can experiment 
+      with the middle slider as well. Adjust until things look good. Click OK.
+      
+This can be a good time to adjust the opacity of the nebula adjustments 
+layer.
+
+45. Repeat steps 21-23 for the background adjustments layer.
+
+46. Make all layers from the star mask up visible.
+
+47. Layer > New from Visible. Rename this layer to "combined" and move it to the top of the 
+      stack in the Layers palette.
+
+This layer basically stores the state of edits thus far.
+
+48. Select the nebula adjustments layer. Right-click > Duplicate layer.
+      Rename to "neb. color adj".
+
+49. Drag neb. color adj  to the stop of the stack. Keep it selected.
+
+50. Colors > Saturation. Play with this value until it looks right. 
+      Show and hide the layer to see the effect. 
+      (For the tutorial, this author went with 1.2.)
+      OK the dialog box.
+  
+Be aware that the Saturation value is not "sticky". So if you OK a value and re-open the 
+Saturation dialogue box later for the same layer, your previous setting will not appear.  
+(This seems like a bug.)
+
+51. Adjust the opacity of the neb. color adj layer as needed. 
+      (This author went with 50%.)
+
+52. In the upper right of the interface, select the histogram view and select RGB.
+        
+In this author's session, the red end of the spectrum was skewed to the right.
+This seems to be expected for the tutorial image because the nebula is mostly red.
+
+Pretty much at any time, you can go to Colors > Brightness-Contrast to do an 
+adjustment on a layer. You can also create a copy of a layer and  play with this.
+
+53. Select the background adjustments layer, right click, and duplicate the layer.
+      Move the new layer to the second from top. 
+      Rename it "backgd contrast  adj". Leave this layer selected.
+       
+You can toggle this layer on and off to see the effect. It's going to be additive to the 
+combined layer. You can choose to touch it up or simply delete it.
+
+54. (Optional.) Select Colors > Brightness-Contrast and touch up the contrast a bit. 
+       OK the dialogue box when happy.
+       
+If you don't really like or need the effect, you can simply delete the layer or just hide it.
+
+55. Make the combined and neb. color adj layer visible. 
+      If you plan to use backgd contrast adj, make it visible also.
+      
+56. Layer > New from Visible. Rename this layer to combined2 and move it
+      to the top of the Layers palette stack. Keep the layer selected. 
+       
+You can switch off the visibility of layers other than combined2.
+       
+57. Filters > Enhance > Noise Reduction.
+      By default, the setting is 4 and it is automatically applied. 
+        
+That setting seems to be satisfactory for where we're at with the tutorial.
+Noise reduction softens the image, and you can lose some of the dimmer stars.
+
+58. Move the neb. color adj layer to the top of the layer stack. 
+      Make it visible.
+
+59. Make a copy of the background adjustments layer and move it above 
+      the combined2 layer and make it visible.
+       
+60. Adjust the opacity of the copy of the background adjustments layer copy.
+      (This author chose 50%.) Keep this layer selected.
+
+61. In the Layers palette, change the mode to Luma lighten only. 
+      This allows the noise reduction without losing as many stars.
+        
+62. Repeat the previous step for the neb. color adj layer.
+
+You may want to increase the opacity of the neb. color adj layer. 
+This author chose a value of 60%, but it's a matter of taste.
+
+63. Make the top three layers visible and do Layer > New from Visible.
+      Rename to combined3. 
+
+64. Move the star mask layer to the second in the stack.
+      Make it visible.
+
+65. Apply steps 21 through 23 to the combined3 layer.
+      Make this the active layer (not the mask).
+
+66. Select Colors > Levels.
+      Bring the white end of the Input Levels down a bit.
+      OK the dialogue box.
+
+67. For the combined3 layer, right-click > Duplicate Layer.
+
+68. Select the mask on the duplicate layer, right-click > Delete Layer Mask.
+      Rename the new layer to contrast.
+      Make this the active layer.
+
+69. Repeat step 36, only this time make a deeper S shape.
+      Colors > Curves ...
+      OK the dialogue box.
+
+70. Select Colors > Brightness-Contrast.
+      Bring the contrast up a bit.
+      OK the dialogue box.
+
+71. Select Layer > Mask > Add Layer Mask
+      Select Black (full transparency).
+      Make sure it isn't inverted.
+
+72. Choose the paintbrush tool.
+      Set Size 50.
+      Set Hardness 5.
+      Set Force about 15.
+      Select the white color from the color selector and bring it to the foreground.
+
+73. Paint over regions you want to highlight.
+      Adjust the Opacity down and feather things in. 
+      May want to play with the Force some more as well.
+
+74. With the contrast layer mask selected, select Filters > Blur > Gaussian Blur.
+      Make the Size X value about 20.
+      This will bring up Size Y as well because they are locked by default.
+
+75. Make the contrast layer active, not the mask.
+
+You can now change the opacity of this layer.
+This is done with Mode Normal in the Layers palette, or you can change the 
+mode to Multiply.
+
+76. Mode > Multiply and set the Opacity to about 20.
+
+77. With the top 3 layers visible, Layer > New from Visible.
+      Layer > Transform > Rotate 180.
+
+You can now export this to whatever formats GIMP supports.
+
+
